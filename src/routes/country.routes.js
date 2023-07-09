@@ -102,37 +102,9 @@ countryRouter.post("/", async (req, res) => {
   //   const req = await fetch("https://restcountries.com/v3.1/all");
   //   data = await req.json();
   // } catch {}
-  await data?.forEach((item) => {
-    const {
-      name,
-      nativeName,
-      capital,
-      currency,
-      region,
-      subRegion,
-      language,
-      flag,
-      population,
-      borderCountries,
-    } = item;
-
-    try {
-      Country.create({
-        name: name,
-        capital: capital ? capital[0] : null,
-        region: region,
-        subRegion: subRegion,
-        flag: flag,
-        population: population,
-        nativeName: nativeName,
-        currency: currency,
-        language: language,
-        borderCountries: borderCountries,
-      });
-      res.send("insert data succesfuly!");
-    } catch (error) {
-      console.log(error);
-    }
+  await data?.map((item)=>{
+    await Country.create(item)
+  })
   });
   // let data = [];
   // try {

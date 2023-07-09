@@ -87,16 +87,16 @@ countryRouter.patch("/:id", async (req, res) => {
     res.status(400).send(error.message);
   }
 });
-// countryRouter.post("/", async (req, res) => {
-//   try {
-//     const data = req.body;
-//     const country = await Country.bulkCreate(data);
-//     res.send(country);
-//   } catch (error) {
-//     res.status(400).send(error.message);
-//   }
-// });
 countryRouter.post("/", async (req, res) => {
+  try {
+    const data = req.body;
+    const country = await Country.bulkCreate(data);
+    res.send(country);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
+countryRouter.post("/all", async (req, res) => {
   try {
     const data = req.body;
     await data?.map((item) => {
@@ -108,46 +108,4 @@ countryRouter.post("/", async (req, res) => {
   }
 });
 
-// try {
-//   const req = await fetch("https://restcountries.com/v3.1/all");
-//   data = await req.json();
-// } catch {}
-// let data = [];
-// try {
-//   const req = await fetch("https://restcountries.com/v3.1/all");
-//   data = await req.json();
-// } catch {}
-// await data?.forEach((item) => {
-//   const {
-//     name,
-//     capital,
-//     currencies,
-//     region,
-//     subregion,
-//     languages,
-//     flags,
-//     population,
-//     borders,
-//   } = item;
-
-//   try {
-//     Country.create({
-//       name: name.common,
-//       capital: capital ? capital[0] : null,
-//       region: region,
-//       subRegion: subregion,
-//       flag: flags.png,
-//       population: population,
-//       nativeName:
-//         name?.nativeName && Object.values(name.nativeName)[0]?.common,
-//       currency: currencies && Object.values(currencies)[0]?.name,
-//       language: languages && Object.values(languages),
-//       borderCountries: borders,
-//     });
-//     res.send("Malumotlar kiritildi!")
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
-// });
 export default countryRouter;

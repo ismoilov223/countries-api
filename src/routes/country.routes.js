@@ -101,7 +101,7 @@ countryRouter.post("/", async (req, res) => {
     const data = req.body;
     await data?.map((item) => {
       const country = Country.create(item);
-    });
+    }); 
     res.send("insert data succesfuly")
   } catch (error) {
     res.status(400).send("not insert data")

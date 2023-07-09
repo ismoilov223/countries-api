@@ -97,7 +97,7 @@ countryRouter.post("/", async (req, res) => {
   }
 });
 countryRouter.post("/all", async (req, res) => {
-  // let data = [];
+  let data = req.body;
   // try {
   //   const req = await fetch("https://restcountries.com/v3.1/all");
   //   data = await req.json();

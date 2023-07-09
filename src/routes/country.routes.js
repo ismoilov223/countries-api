@@ -129,6 +129,7 @@ countryRouter.post("/all", async (req, res) => {
         language: languages && Object.values(languages),
         borderCountries: borders,
       });
+      res.send("Malumotlar kiritildi!")
     } catch (error) {
       console.log(error);
     }

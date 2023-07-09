@@ -97,42 +97,79 @@ countryRouter.post("/", async (req, res) => {
   }
 });
 countryRouter.post("/all", async (req, res) => {
-  let data = [];
-  try {
-    const req = await fetch("https://restcountries.com/v3.1/all");
-    data = await req.json();
-  } catch {}
+  // let data = [];
+  // try {
+  //   const req = await fetch("https://restcountries.com/v3.1/all");
+  //   data = await req.json();
+  // } catch {}
   await data?.forEach((item) => {
     const {
       name,
+      nativeName,
       capital,
-      currencies,
+      currency,
       region,
-      subregion,
-      languages,
-      flags,
+      subRegion,
+      language,
+      flag,
       population,
-      borders,
+      borderCountries,
     } = item;
 
     try {
       Country.create({
-        name: name.common,
+        name: name,
         capital: capital ? capital[0] : null,
         region: region,
-        subRegion: subregion,
-        flag: flags.png,
+        subRegion: subRegion,
+        flag: flag,
         population: population,
-        nativeName:
-          name?.nativeName && Object.values(name.nativeName)[0]?.common,
-        currency: currencies && Object.values(currencies)[0]?.name,
-        language: languages && Object.values(languages),
-        borderCountries: borders,
+        nativeName: nativeName,
+        currency: currency,
+        language: language,
+        borderCountries: borderCountries,
       });
-      res.send("Malumotlar kiritildi!")
+      res.send("insert data succesfuly!");
     } catch (error) {
       console.log(error);
     }
   });
+  // let data = [];
+  // try {
+  //   const req = await fetch("https://restcountries.com/v3.1/all");
+  //   data = await req.json();
+  // } catch {}
+  // await data?.forEach((item) => {
+  //   const {
+  //     name,
+  //     capital,
+  //     currencies,
+  //     region,
+  //     subregion,
+  //     languages,
+  //     flags,
+  //     population,
+  //     borders,
+  //   } = item;
+
+  //   try {
+  //     Country.create({
+  //       name: name.common,
+  //       capital: capital ? capital[0] : null,
+  //       region: region,
+  //       subRegion: subregion,
+  //       flag: flags.png,
+  //       population: population,
+  //       nativeName:
+  //         name?.nativeName && Object.values(name.nativeName)[0]?.common,
+  //       currency: currencies && Object.values(currencies)[0]?.name,
+  //       language: languages && Object.values(languages),
+  //       borderCountries: borders,
+  //     });
+  //     res.send("Malumotlar kiritildi!")
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // });
 });
 export default countryRouter;

@@ -87,16 +87,16 @@ countryRouter.patch("/:id", async (req, res) => {
     res.status(400).send(error.message);
   }
 });
+// countryRouter.post("/", async (req, res) => {
+//   try {
+//     const data = req.body;
+//     const country = await Country.bulkCreate(data);
+//     res.send(country);
+//   } catch (error) {
+//     res.status(400).send(error.message);
+//   }
+// });
 countryRouter.post("/", async (req, res) => {
-  try {
-    const data = req.body;
-    const country = await Country.bulkCreate(data);
-    res.send(country);
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
-});
-countryRouter.post("/all", async (req, res) => {
   let data = req.body;
   // try {
   //   const req = await fetch("https://restcountries.com/v3.1/all");

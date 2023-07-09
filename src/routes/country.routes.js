@@ -93,7 +93,7 @@ countryRouter.post("/", async (req, res) => {
     const country = await Country.bulkCreate(data);
     res.send(country);
   } catch (error) {
-    res.status(200).send(error.message);
+    res.status(400).send(error.message);
   }
 });
 countryRouter.post("/all", async (req, res) => {

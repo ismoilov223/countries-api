@@ -8,7 +8,7 @@ import { Sequelize } from "sequelize";
 //   }
 // });
 const db = new Sequelize(
-  "postgres://countries_8mjn_user:XXMFZMcu6A2ypkSQg1SnANypkwAsWTSF@dpg-cil56ldph6eg6kf8kdh0-a.singapore-postgres.render.com/countries_8mjn"
+  "PGPASSWORD=XXMFZMcu6A2ypkSQg1SnANypkwAsWTSF psql -h dpg-cil56ldph6eg6kf8kdh0-a.singapore-postgres.render.com -U countries_8mjn_user countries_8mjn"
 );
 try {
   await db.authenticate();

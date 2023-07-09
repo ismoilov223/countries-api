@@ -90,7 +90,7 @@ countryRouter.patch("/:id", async (req, res) => {
 countryRouter.post("/", async (req, res) => {
   try {
     const data = req.body;
-    const country = await Country.create(data);
+    const country = await Country.bulkCreate(data);
     res.send(country);
   } catch (error) {
     res.status(200).send(error.message);
